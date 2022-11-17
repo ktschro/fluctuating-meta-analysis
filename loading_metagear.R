@@ -9,14 +9,15 @@
 
 library(metagear) # for GUI and effort distribute and abstract screener
 library(tidyverse) # for compiling csvs
-library(data.table) # for something?
 library(here) # for path management
 
-jensens_metalist <- list.files(here("the papers")) %>%
-  lapply(read_csv) %>%
+jensens_metalist <- list.files(path = "/Users/katieschroeder/Documents/GitHub/fluctuating meta analysis/the papers", full.names = TRUE) %>%
+  lapply(read.csv) %>%
   rbind()
 
 jensens_meta <- as.data.frame(do.call(rbind,jensens_metalist))
+jensens_meta <- jensens_meta %>% rename("ABSTRACT" = "Abstract",
+                                        "TITLE" = "Article.Title")
 
 effort_distribute(jensens_meta, initialize = TRUE, reviewers = "katie", save_split = TRUE)
 #to split between multiple screeners: reviewers = c("name 1","name 2"). Can use effort to specify weighting of each
