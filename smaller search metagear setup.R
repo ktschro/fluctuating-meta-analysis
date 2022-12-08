@@ -6,6 +6,11 @@
 #insect AND fluctuat* temperature increases to 1465. query link: https://www.webofscience.com/wos/woscc/summary/c6a5247d-ce31-4c18-9dc2-b766a6b666d1-62f40afa/relevance/1
   # still doesn't include Carrington 2013 paper that I really think it should
 
+# most inclusive search link: https://www.webofscience.com/wos/woscc/summary/5920994e-c119-4ddb-9cac-5bd1781778c4-646831c6/relevance/1
+
+# different search tactic: constant and temperatur* AND (fluctuat* OR vari*) AND (animal or insect or ectotherm)
+# link: https://www.webofscience.com/wos/woscc/summary/beb285dc-e743-4191-9ac9-04de3685bba5-6468104c/relevance/1
+
 library(metagear) # for GUI and effort distribute and abstract screener
 library(tidyverse) # for compiling csvs
 library(here) # for path management
