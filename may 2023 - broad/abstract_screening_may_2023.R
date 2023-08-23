@@ -36,4 +36,27 @@ abstract_screener("effort_katie.csv",
                   theButtons = c("YES","maybe","NO","analyze","read"),
                   keyBindingToButtons = c("y","m","n","t","r"),
                   highlightColor = "powderblue",
-                  highlightKeywords = c("fluctuate","fluctuating","fluctuation","temperature","constant","vary","variable","varying"))
+                  highlightKeywords = c("fluctuate","fluctuating","fluctuation","temperature","constant","vary","variable","varying"),
+                  fontSize=11,
+                  windowHeight = 18,
+                  windowWidth = 100)
+
+#-------------------------------------------------------- ----------- ---------------- ####### 
+###Try to extract figures####
+#subset to just the yeses
+library(tidyverse)
+library(metagear)
+effort<-read.csv("may 2023 - broad/effort_katie.csv")
+table(effort$INCLUDE) #177 yes
+yeses <- read.csv("potential_8_17_2023.csv")
+
+collectionOutcomes <- PDFs_collect(yeses,DOIcolumn="DOI.Link",FileNamecolumn = "STUDY_ID",quiet=TRUE)
+table(collectionOutcomes$downloadOutcomes)
+
+collectionOutcomes <- PDFs_collect(theRefs,DOIcolumn="DOI",FileNamecolumn = "STUDY_ID",quiet=TRUE)
+
+#--------- get list of DOIS ------------
+effort<-read.csv("effort_katie.csv")
+potential<- effort %>% filter(INCLUDE=="YES"|INCLUDE=="maybe"|INCLUDE=="read") 
+potential %<>% select(STUDY_ID,INCLUDE,Authors,TITLE,DOI,DOI.Link)
+write.csv(potential,"potential_8_17_2023.csv")
