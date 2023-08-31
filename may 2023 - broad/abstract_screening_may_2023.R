@@ -46,7 +46,7 @@ abstract_screener("effort_katie.csv",
 #subset to just the yeses
 library(tidyverse)
 library(metagear)
-effort<-read.csv("may 2023 - broad/effort_katie.csv")
+effort<-read.csv("effort_katie.csv")
 table(effort$INCLUDE) #177 yes
 yeses <- read.csv("potential_8_17_2023.csv")
 
@@ -59,4 +59,4 @@ collectionOutcomes <- PDFs_collect(theRefs,DOIcolumn="DOI",FileNamecolumn = "STU
 effort<-read.csv("effort_katie.csv")
 potential<- effort %>% filter(INCLUDE=="YES"|INCLUDE=="maybe"|INCLUDE=="read") 
 potential %<>% select(STUDY_ID,INCLUDE,Authors,TITLE,DOI,DOI.Link)
-write.csv(potential,"potential_8_17_2023.csv")
+write.csv(potential,"potential_8_22_2023.csv")
